@@ -116,7 +116,6 @@ int calculator(int num1, char op, int num2) {
 
 	//return (op == '+') ? num1 + num2 : (op == '*') ? num1 * num2 : (op == '-') ? num1 - num2 : (op == '/' && num2 == 0) ? 0 : (op == '/') ? num1 / num2 : 0;
 
-
 	switch (op)
 	{
 	case '/':
@@ -129,7 +128,6 @@ int calculator(int num1, char op, int num2) {
 	case '-':
 		return num1 - num2;
 	}
-
 }
 
 
@@ -140,16 +138,154 @@ int getLastItem(int arr[], int length) {
 }
 
 
+// Kod Egzersizi 12
+// parametre olarak verilen dizideki tek sayýlara +1 ekleyen, çift sayýlara -1 ekleyen metodu yazýn.
+#include <vector>
+std::vector<int> transform(std::vector<int> arr) {
+	for (int i = 0; i < arr.size(); i++)
+	{
+		//arr[i] % 2 == 0 ? arr[i] -= 1 : arr[i] += 1;
+		if (arr[i] % 2 == 1)
+		{
+			arr[i] += 1;
+		}
+		else
+		{
+			arr[i] -= 1;
+		}
+	}
+	return arr;
+}
+
+
+// Kod Egzersizi 13
+// ingilizce dilinde string olarak girilen ifadenin çoðul olup olmadýðýný belirleyen metodu yazýn. Çoðul ise True, Tekil ise False dönsün.
+// çoðul ifadesi olarak sondaki "s" karakteri kontrol edilecek.
+#include <iostream>
+bool isPlural(std::string word) {
+
+	const char plural = 's';
+	if (word[word.size() - 1] == plural)
+		return true;
+	else
+		return false;
+
+	//return word[word.size() - 1] == 's';
+
+}
+
+
+// Kod Egzersizi 14
+// parametre olarak aldýðý dizideki tüm nesnelerin sonunda, aldýðý ikinci parametreyi ekleyen metodu yazýn.
+#include <iostream>
+#include <vector>
+std::vector<std::string> addEnding(std::vector<std::string> arr, std::string ending) {
+	for (int i = 0; i < arr.size(); i++)
+	{
+		arr[i] += ending;
+	}
+	return arr;
+}
+
+
+// Kod Egzersizi 15
+// 1'den baþlayarak parametre olarak verilen sayýya kadarki tüm sayýlarý toplayan metodu yazýn.
+#include <iostream>
+int addUpTo(int n) {
+	if (n >= 1)
+	{
+		int sum = 0;
+		for (int i = 1; i <= n; i++)
+		{
+			sum += i;
+		}
+		return sum;
+	}
+	else
+		return 0;
+
+
+	// recursive çözüm
+	/*if (n == 1) { return 1; }
+	else return n + addUpTo(n - 1);*/
+}
+
+
+// Kod Egzersizi 16
+// Alýnan her 6 kahvede bir kahve bedava. Yani 6 kahve alýrsam 7 kahvem olur. Parametre olarak girilen kahve sayýsýna göre toplam kahve sayýsýný veren metodu yazýn.
+int totalCups(int n) {
+	return n + (n / 6);
+}
+
+
+// Kod Egzersizi 17
+// parametre olarak aldýðý string degerde ard arda tekrar eden kelimeler var ise True yok ise False dönen metodun yazýn.
+#include <iostream>
+bool double_letters(std::string word) {
+	for (int i = 0; i < word.size(); i++)
+	{
+		if (i >= 1)
+			if (word[i - 1] == word[i])
+				return true;
+	}
+	return false;
+}
+
+
+
+
+// Kod Egzersizi 18
+// Dýþarýdan parametre olarak girilen sayýnýn hangi ay olduðunu veren metodu yazýn.
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+std::string monthName(int n) {
+	switch (n)
+	{
+	case 1: return "January";	break;
+	case 2: return "February";	break;
+	case 3: return"March";	break;
+	case 4: return"April";	break;
+	case 5: return"May";	break;
+	case 6: return"June";	break;
+	case 7: return"July";	break;
+	case 8: return"August";	break;
+	case 9: return"September";	break;
+	case 10:return "October"; break;
+	case 11:return "November"; break;
+	case 12:return "December"; break;
+	default:return ""; break;
+	}
+	//vector<string> a = { "January","February","March","April","May","June","July","August","September","October","November","December" };
+	//return a[n - 1];
+}
+
+
+
+// Kod Egzersizi 19
+// parametre olarak verilen dizideki sayýlarýn, parametre olarak verilen diðer sayýnýn çarpanlarý olup olmadýðýný kontrol eden metodu yazýn.
+// 2,3,4 sayýlarý 12'nin çarpanlarýdýr.
+#include <iostream>
+#include <vector>	
+bool checkFactors(std::vector<int> f, int num) {
+	for (int i = 0; i < f.size(); i++)
+	{
+		if (num % f[i] != 0)
+			return false;
+		return true;
+	}
+}
+
 
 
 
 // NOT:  main hepsi küçük harflerle olmak zorundadýr. Aksi halde program hata veriyor.
 void main()
 {
-	std::cout << calculator(5, '*', 5) << std::endl;
-	std::cout << calculator(5, '/', 5) << std::endl;
-	std::cout << calculator(5, '-', 5) << std::endl;
-	std::cout << calculator(5, '+', 5) << std::endl;
-	std::cout << calculator(5, '/', 0) << std::endl;
+	std::cout << checkFactors({ 2,3,4 }, 12) << std::endl;
+	std::cout << checkFactors({ 1,2,3,8 }, 12) << std::endl;
+	std::cout << checkFactors({ 1,2,50 }, 100) << std::endl;
+	std::cout << checkFactors({ 3,6 }, 9) << std::endl;
 
 }
